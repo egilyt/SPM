@@ -3,16 +3,16 @@ from matplotlib_scalebar.scalebar import ScaleBar
 import gwyfile as gwy
 import os
 
-# Update global matplotlib parameters for consistent styling
 plt.rcParams.update({
-    'font.size': 12,  # Set font size for all text elements
-    'font.family': 'serif',  # Use serif fonts
-    "text.usetex": True, # Use LaTeX for text rendering
-    'text.latex.preamble': # Add custom LaTeX preamble for font selection
-        r"""
-        \usepackage{libertine}
-        \usepackage[libertine]{newtxmath}
-        """,
+    'font.size': 12,
+    'font.family': 'serif',
+    # Uncomment the following lines to use LaTeX for custom fonts
+    # 'text.usetex': True, 
+    # 'text.latex.preamble':
+    #     r"""
+    #     \usepackage{libertine}
+    #     \usepackage[libertine]{newtxmath}
+    #     """,
 })
 
 
@@ -34,7 +34,8 @@ def add_cbar(im, ax, data, label, **kwargs):
     cbar.ax.axis('off')  # Hide colorbar axis
 
     sep = 0.07  # Separation between the colorbar and the labels
-    # Add min and max value labels
+
+    # Add min and max value labels with 3 significant digits
     cbar.ax.text(0.5, 0-sep, f"{data.min():.3g}", va='center', ha='center', transform=cbar.ax.transAxes)
     cbar.ax.text(0.5, 1+sep, f"{data.max():.3g}", va='center', ha='center', transform=cbar.ax.transAxes)
     # Add vertical colorbar label
@@ -58,8 +59,8 @@ def add_scalebar(ax, **kwargs):
         1, "m", length_fraction=0.3, location="lower left", scale_loc='top',
         frameon=False, border_pad=1.5, width_fraction=0.012,
         color='white', **kwargs
-    )  # Customize scalebar properties
-    ax.add_artist(scalebar)  # Add the scalebar to the axis
+    )
+    ax.add_artist(scalebar)
 
     return scalebar
 
@@ -87,7 +88,7 @@ params = {
 def process_gwy_files():
     """
     Processes all `.gwy` files in the current directory, extracts AFM data,
-    and saves the plots with scalebars and colorbars.
+    and saves the plots with scalebars and colorbars in a new folder.
     """
     # Get all .gwy files in the current folder
     files = [f for f in os.listdir(os.getcwd()) if f.endswith('.gwy')]
@@ -136,6 +137,8 @@ def process_gwy_files():
             output_path = os.path.join(output_folder, f"{os.path.splitext(file)[0]}.{key}.png")
             # Save the figure as an image file
             fig.savefig(output_path, dpi=300, bbox_inches='tight')
+
+
 
 
 if __name__ == "__main__":
