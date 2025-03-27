@@ -8,3 +8,7 @@ Python script to plot AFM data. The script processes every `.gwy`-file in its fo
    2. Save as a new file with the `.gwy` file extension.
 2. Run `plot_spm_folder.py` in the same folder as the data.
 3. Voilà.
+
+---
+
+For more advanced data processing and visualization, check out [Ruben's WallPY repo](https://github.com/RubenDragland/WallPY/tree/main).
