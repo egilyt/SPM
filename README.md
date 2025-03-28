@@ -11,4 +11,4 @@ Python script to plot AFM data. The script processes every `.gwy`-file in its fo
 
 ---
 
-For more advanced data processing and visualization, check out [Ruben's WallPY repo](https://github.com/RubenDragland/WallPY/tree/main).
+For more advanced functionality, check out [Ruben's WallPY repo](https://github.com/RubenDragland/WallPY/tree/main).
